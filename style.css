@@ -107,3 +107,15 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Additional styles
+ */
+
+ .moves {
+     margin-left: 20px;
+ }
+
+ .timer {
+    margin-left: 20px;
+}
