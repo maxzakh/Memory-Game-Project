@@ -36,7 +36,7 @@ function indexToCard(idx) {
 }
 
 function amountOfStars() {
-    let nStars = 0;
+    let nStars = 1;
     let limit = 20;
     if (moveCounter <= limit) {
         nStars = 3;
@@ -68,7 +68,11 @@ function getCurrentClass(el) {
 function cardClick() {
     //This is responsible for the states of the tiles
     let currentIndex = extractTileId(this.id);
-    console.log(currentIndex);
+    //console.log(currentIndex);
+    if (!isGameRunning()) {
+        restartGame();
+        startTimer();
+    }
 
     if (openCards.length === 0) {
         openCards.push(currentIndex);
@@ -105,8 +109,9 @@ function cardClick() {
     let isOver = document.querySelectorAll(".match").length === DECK_SIZE;
     if (isOver) {
         stopTimer();
-        showWinMessage();
-        startTimer();
+        setTimeout(() => {
+            showWinMessage();
+        }, 0);
     }
 }
 
@@ -130,6 +135,10 @@ function stopTimer() {
 function onGameTimer() {
     counter++;
     counterElement.innerHTML = formatElapsedTime(counter);
+}
+
+function isGameRunning() {
+    return !!moveCounter;
 }
 
 function formatElapsedTime(time) {
@@ -174,19 +183,10 @@ function restartGame() {
         let cls = cssClasses[tiles[tileIndex]];
         cardElement.classList.add(cls);
     });
-    startTimer();
 }
 
 function restartClick() {
-    //Check if game is running
-    if (counterIntervalId) {
-        //Reset to initial state if game is running
-        restartGame();
-    }
-    else {
-        //If game is not running then start the game timer
-        startTimer();
-    }
+    restartGame();
 }
 
 function setMoveCounter(value) {
@@ -211,6 +211,7 @@ function showWinMessage() {
     
     Would you like to play again?`;
     alert(msg);
+    restartGame();
 }
 
 function main() {
@@ -219,5 +220,4 @@ function main() {
     initDomElements(DECK_SIZE, document.querySelector(".deck"));
     assignTileClasses(tiles, cssClasses);
     document.querySelector(".restart").addEventListener("click", restartClick, false);
-    startTimer();
 }
