@@ -119,3 +119,14 @@ h1 {
  .timer {
     margin-left: 20px;
 }
+
+/*
+ * Media queries
+ */
+
+@media screen and (max-width: 480px) {
+    .deck {
+        width: 360px;
+        min-height: 640px;
+    }
+}

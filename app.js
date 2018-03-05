@@ -102,6 +102,8 @@ function cardClick() {
                 openCards = [];
             }, 700);
        }
+    } else {
+        return;
     }
     setMoveCounter(moveCounter + 1);
     updateStars();
