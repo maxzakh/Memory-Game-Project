@@ -36,7 +36,7 @@ function indexToCard(idx) {
 
 function amountOfStars() {
     let nStars = 0;
-    let limit = 4;
+    let limit = 20;
     if (moveCounter <= limit) {
         nStars = 3;
     }
@@ -50,6 +50,7 @@ function amountOfStars() {
 }
 
 function updateStars() {
+    //Changes the opacity to the stars
     let nStars = amountOfStars();
     let starElements = document.querySelectorAll(".fa.fa-star");
     starElements[0].style.opacity = nStars >= 1 ? "1" : "0.1";
@@ -63,7 +64,8 @@ function getCurrentClass(el) {
     return el.classList[2];
 }
 
-function cardClick() {  
+function cardClick() {
+    //This is responsible for the states of the tiles
     let currentIndex = extractTileId(this.id);
     console.log(currentIndex);
 
@@ -192,6 +194,7 @@ function setMoveCounter(value) {
 }
 
 function showPlural(num, text) {
+    //This makes the showWinMessage() grammatically correct
     if (num === 1) {
         return `${num} ${text}`;
     } else {
