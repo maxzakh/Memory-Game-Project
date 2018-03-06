@@ -7,6 +7,7 @@ const DECK_SIZE = 16;
 let moveCounter = 0;
 
 function initArray(array, size) {
+    //initializes the array to be used in the main function
     for (let i = 0; i < size; i++) {
         array.push(i);
     }
@@ -210,7 +211,7 @@ function showWinMessage() {
     let msg = `Congratulations, you won!
     It took you ${moveCounter} moves to win.
     You won with ${showPlural(stars, "star")} in ${showPlural(counter, "second")}.
-    
+
     Would you like to play again?`;
     alert(msg);
     restartGame();
